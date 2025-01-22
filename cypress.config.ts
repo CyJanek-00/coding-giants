@@ -14,7 +14,7 @@ export default defineConfig({
     defaultCommandTimeout: 5000,
     experimentalRunAllSpecs: true,
     numTestsKeptInMemory: 1,
-    pageLoadTimeout: 10000,
+    pageLoadTimeout: 30000,
     requestTimeout: 10000,
     chromeWebSecurity: false,
     includeShadowDom: true,

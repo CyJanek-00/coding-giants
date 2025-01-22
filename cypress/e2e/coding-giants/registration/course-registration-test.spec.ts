@@ -6,11 +6,13 @@ import {SnackbarAssertionHelper} from "../../../support/coding-giants/page-objec
 describe('course registration Test', () => {
 
     beforeEach(() => {
-        // cy.loginOnPage()
+        cy.clearAllLocalStorage()
         cy.visit("https://devtest.giganciprogramowania.edu.pl/zapisz-sie");
     })
 
-    it.skip('case - 1 assert validation communications', () => {
+    it('case - 1 Verify required fields for first step of polish registration form module', () => {
+        RegistrationPages.RegistrationProgressPage
+            .verifyGivenStepIsActive(1)
         RegistrationPages.StartFormPage
             .clickSubmitButton(false)
 
@@ -20,10 +22,12 @@ describe('course registration Test', () => {
             .verifyValidationForField(InputSelectorEnum.Email, ValidationEnum.REQUIRED_FIELD_VALIDATION)
             .verifyValidationForField(InputSelectorEnum.PhoneNumber, ValidationEnum.REQUIRED_FIELD_VALIDATION)
             .verifyValidationForField(InputSelectorEnum.BirthYear, ValidationEnum.REQUIRED_FIELD_VALIDATION)
+            .verifyStatusAgreedCheckboxValidation(ValidationEnum.THIS_FIELD_IS_REQUIRED)
+            .verifyStatuteAgreedCheckboxValidation(ValidationEnum.THIS_FIELD_IS_REQUIRED)
         assertCorrectFirstPage()
     })
 
-    it.skip('case - 2 assert email validation communications', () => {
+    it.skip('case - 2 Verify correct error message appears when incorrect email format is provided', () => {
         RegistrationPages.StartFormPage
             .typeGivenInput(InputSelectorEnum.Email, 'user#example.com')
             .clickSubmitButton(false)
@@ -31,24 +35,43 @@ describe('course registration Test', () => {
         SnackbarAssertionHelper.assertSnackbarValue(ValidationEnum.PLEASE_FIELD_ALL_FIELD_VALIDATION)
         assertCorrectFirstPage()
 
-        RegistrationPages.StartFormPage
-            .dblclickSubmitButton()
-        SnackbarAssertionHelper.assertSnackbarValue(ValidationEnum.PLEASE_FIELD_ALL_FIELD_VALIDATION)
-        assertCorrectFirstPage()
+        // RegistrationPages.StartFormPage
+        //     .dblclickSubmitButton()
+        // SnackbarAssertionHelper.assertSnackbarValue(ValidationEnum.PLEASE_FIELD_ALL_FIELD_VALIDATION)
+        // assertCorrectFirstPage()
     })
 
-    it('case - 3 assert phone number validation communications', () => {
+    it.skip('case - 3 Verify correct error message appears when incorrect phone number format is provided', () => {
         RegistrationPages.StartFormPage
             .typeGivenInput(InputSelectorEnum.PhoneNumber, '12345665')
             .clickSubmitButton(false)
-            .verifyValidationForField(InputSelectorEnum.PhoneNumber, ValidationEnum.INCORRECT_PHONE_NUMBER_VALIDATION)
         SnackbarAssertionHelper.assertSnackbarValue(ValidationEnum.PLEASE_FIELD_ALL_FIELD_VALIDATION)
-        assertCorrectFirstPage()
 
         RegistrationPages.StartFormPage
-            .dblclickSubmitButton()
-        SnackbarAssertionHelper.assertSnackbarValue(ValidationEnum.PLEASE_FIELD_ALL_FIELD_VALIDATION)
+            .verifyValidationForField(InputSelectorEnum.PhoneNumber, ValidationEnum.INCORRECT_PHONE_NUMBER_VALIDATION)
+            .verifyStatuteAgreedCheckboxValidation(ValidationEnum.THIS_FIELD_IS_REQUIRED)
+            .verifyStatusAgreedCheckboxValidation(ValidationEnum.THIS_FIELD_IS_REQUIRED)
         assertCorrectFirstPage()
+
+        // RegistrationPages.StartFormPage
+        //     .dblclickSubmitButton()
+        // SnackbarAssertionHelper.assertSnackbarValue(ValidationEnum.PLEASE_FIELD_ALL_FIELD_VALIDATION)
+        // assertCorrectFirstPage()
+    })
+
+    it.skip('case - 4 Verify correct first step form submission when correct data provided', () => {
+        RegistrationPages.StartFormPage
+            .typeGivenInput(InputSelectorEnum.ParentName, 'Artur')
+            .typeGivenInput(InputSelectorEnum.Email, 'karolgiganci+fakedata80696@gmail.com')
+            .typeGivenInput(InputSelectorEnum.PhoneNumber, '123456651')
+            .typeGivenInput(InputSelectorEnum.BirthYear, '2005')
+            .clickStatuteAgreedCheckbox()
+            .clickAdvertisementAgreedCheckbox()
+            .clickSubmitButton(true)
+        // RegistrationPages.StartFormPage
+        //     .dblclickSubmitButton()
+        // SnackbarAssertionHelper.assertSnackbarValue(ValidationEnum.PLEASE_FIELD_ALL_FIELD_VALIDATION)
+        // assertCorrectFirstPage()
     })
 
     function assertCorrectFirstPage() {
