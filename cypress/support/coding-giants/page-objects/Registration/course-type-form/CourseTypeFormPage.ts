@@ -4,7 +4,7 @@ import {ActionHelper} from "../../common/ActionHelper";
 export class CourseTypeFormPage {
 
     public clickOnProgrammingButton(): CourseTypeFormPage {
-        CourseTypeFormPageElement.ProgrammingButton.getElement()
+        CourseTypeFormPageElement.ProgrammingCoursesButton.getElement()
             .click();
         return this;
     }

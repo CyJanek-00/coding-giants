@@ -55,6 +55,7 @@ describe('course registration Test', () => {
     it('case - 4 Verify correct first step form submission when correct data provided', () => {
         cy.log('fill in first step of registration')
         fillStartData()
+
         RegistrationPages.StartFormPage
             .clickStatuteAgreedCheckbox()
             .clickAdvertisementAgreedCheckbox()
@@ -69,6 +70,7 @@ describe('course registration Test', () => {
     it('case - 5 Verify registration flow for online annual courses', () => {
         cy.log('fill in first step of registration')
         fillStartData()
+
         RegistrationPages.StartFormPage
             .clickStatuteAgreedCheckbox()
             .clickAdvertisementAgreedCheckbox()

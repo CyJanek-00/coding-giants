@@ -1,8 +1,8 @@
-import {ProgrammingButton} from "./page-element/ProgrammingButton";
+import {ProgrammingCoursesButton} from "./page-element/ProgrammingCoursesButton";
 import {OnlineCourseKindButton} from "./page-element/OnlineCourseKindButton";
 
 export class CourseTypeFormPageElement {
 
-    public static ProgrammingButton: ProgrammingButton = new ProgrammingButton();
+    public static ProgrammingCoursesButton: ProgrammingCoursesButton = new ProgrammingCoursesButton();
     public static OnlineCourseKindButton: OnlineCourseKindButton = new OnlineCourseKindButton();
 }

@@ -8,7 +8,6 @@ export class CoursesPage {
         return this;
     }
 
-
     public selectFirstFreeSlotDate(): CoursesPage {
         CoursePageElement.CourseDateComponent.firstFreeSlotSelectButton()
             .click();
