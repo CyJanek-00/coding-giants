@@ -7,7 +7,7 @@ export class CourseDateComponent {
     public firstFreeSlotElement(): any {
         return this.getElement()
             .find('.timetable__date-places-info')
-            .filter((index, element) => {
+            .filter((element) => {
                 const text = Cypress.$(element).text();
                 return /Wolnych miejsc: \d+/.test(text) && !text.includes('Zapisy na listę rezerwową');
             })

@@ -1,5 +1,3 @@
-import {ProgrammingCourses} from "../enum/ProgrammingCourses";
-
 export class GivenCourseComponent {
 
     public getComponent(courseTitle: string): any {

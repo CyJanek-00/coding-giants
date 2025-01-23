@@ -1,6 +1,13 @@
 {
+  "name": "code-giants-e2e",
+  "version": "1.0.0",
+  "description": "repository as a Recruitment task",
+  "author": "Jan Zadumiński",
+  "license": "ISC",
   "scripts": {
-    "course_registration_test": "npx cypress run --spec cypress/e2e/coding-giants/registration/course-registration-test.spec.ts --browser edge"
+    "course_registration_test": "npx cypress run --spec cypress/e2e/coding-giants/registration/course-registration-test.spec.ts --browser edge",
+    "all_tests": "npx cypress run --browser edge",
+    "cy:open": "npx cypress open"
   },
   "devDependencies": {
     "cypress": "14.0.0",

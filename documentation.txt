@@ -1,0 +1,55 @@
+1. Why used Cypress ?
+- When I read the task requirements, Cypress was my first thought. This framework provides everything needed to meet these requirements effectively.
+
+
+2. Difficulties:
+- The first run returned a license error, which required finding a "temporary" workaround by using:
+Cypress.on('uncaught:exception', (err) => {
+    return !err.message.includes('License expired');
+});
+
+- Strict requirements were given, so I had to pause my initial approach, implement assertions, and follow the exact instructions.
+
+
+3. What would I do differently?
+- I would use a library like faker to generate random test data, such as parent/student names, contact details, etc.
+    - When running test case 5 more than twice, it stops passing because the API validates, that a customer cannot be enrolled in more than two courses per term.
+      Randomizing data would prevent this issue and provide better coverage, such as handling cases with double surnames.
+- I would assert on step four field that ware dynamically pasted in like address email why?
+    - we do not assert that, where we got ensure that this data are accurate and corrected paste,
+    so on the form or in payload assert given data to have absolute certainty about that form
+
+
+4. Test Description:
+Why didn’t the first test case pass?
+    - The issue occurred because, after the first click on the submit button, I didn’t get a red snackbar with the expected title.
+    The assertion expected one element to be visible, but it wasn’t:
+
+    case - 1 Verify required fields for first step of polish registration form module:
+         AssertionError: Timed out retrying after 5000ms: Expected to find element: `.alert-error`, but never found it. Queried from:
+
+After the second click (and subsequent ones), the red snackbar appeared, but there was another issue:
+the snackbar was displayed for every click, and only one snackbar should be visible at a time. On the fifth click, five snackbars were displayed.
+ (In my opinion, the UI should have logic to prevent displaying duplicate snackbars when one is already visible.)
+
+Why didn’t the fifth test case pass?
+   - This issue was explained in point no. 3.
+
+
+5. Structure, page-objects
+- I organized the project into folders that reflect the UI structure, making it intuitive and aligned with the application layout.
+- All methods are self-descriptive and do not require additional explanation. They follow a naming convention that clearly conveys their purpose.
+- Where necessary, I used cy.log('') to provide strict descriptions of what is happening during the test execution.
+This is particularly helpful for understanding the test flow and debugging when needed.
+- Any repetitive code was abstracted into dedicated helper functions to reduce duplication and improve maintainability.
+- To avoid creating redundant classes differing by only one parameter, I implemented methods with dynamic inputs. For instance,
+this allows filling in a given field more efficiently without having to write multiple, nearly identical methods.
+- This approach enhances flexibility, simplifies refactoring, and accelerates future development or changes. Additionally,
+it minimizes the risk of introducing errors when the application evolves.
+- I used interception to better assert is submit button on first step work properly.
+
+6. Additional Efforts:
+I created a GitHub Action to run this test. It is available here:
+https://github.com/CyJanek-00/coding-giants/actions/workflows/registration-test.yml
+
+this workflow is triggered by the workflow_dispatch event, so just need to click the "Run workflow" button and select the main branch.
