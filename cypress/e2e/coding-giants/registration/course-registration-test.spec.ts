@@ -2,7 +2,7 @@ import {RegistrationPages} from "../../../support/coding-giants/page-objects/Reg
 import {RegistrationStartPageInputEnum} from "../../../support/coding-giants/page-objects/Registration/start-form/enum/registrationStartPageInputEnum";
 import {ValidationEnum} from "../../../support/coding-giants/page-objects/common/enum/ValidationEnum";
 import {SnackbarAssertionHelper} from "../../../support/coding-giants/page-objects/common/SnackbarAssertionHelper";
-import {CourseKind} from "../../../support/coding-giants/page-objects/Registration/enum/CourseKind";
+import {CourseKindEnum} from "../../../support/coding-giants/page-objects/Registration/enum/CourseKindEnum";
 import {ProgrammingCourses} from "../../../support/coding-giants/page-objects/Registration/courses/enum/ProgrammingCourses";
 import {StudentAndParentInputEnum} from "../../../support/coding-giants/page-objects/Registration/student-and-parent-data/enum/StudentAndParentInputEnum";
 
@@ -13,7 +13,7 @@ describe('course registration Test', () => {
         cy.visit("https://devtest.giganciprogramowania.edu.pl/zapisz-sie");
     })
 
-    it.skip('case - 1 Verify required fields for first step of polish registration form module', () => {
+    it('case - 1 Verify required fields for first step of polish registration form module', () => {
         RegistrationPages.RegistrationProgressPage
             .verifyGivenStepIsActive(1)
         RegistrationPages.StartFormPage
@@ -30,7 +30,7 @@ describe('course registration Test', () => {
         assertCorrectFirstPage()
     })
 
-    it.skip('case - 2 Verify correct error message appears when incorrect email format is provided', () => {
+    it('case - 2 Verify correct error message appears when incorrect email format is provided', () => {
         RegistrationPages.StartFormPage
             .typeGivenInput(RegistrationStartPageInputEnum.EMAIL, 'user#example.com')
             .clickSubmitButton(false)
@@ -39,7 +39,7 @@ describe('course registration Test', () => {
         assertCorrectFirstPage()
     })
 
-    it.skip('case - 3 Verify correct error message appears when incorrect phone number format is provided', () => {
+    it('case - 3 Verify correct error message appears when incorrect phone number format is provided', () => {
         RegistrationPages.StartFormPage
             .typeGivenInput(RegistrationStartPageInputEnum.PHONE_NUMBER, '12345665')
             .clickSubmitButton(false)
@@ -54,11 +54,8 @@ describe('course registration Test', () => {
 
     it('case - 4 Verify correct first step form submission when correct data provided', () => {
         cy.log('fill in first step of registration')
+        fillStartData()
         RegistrationPages.StartFormPage
-            .typeGivenInput(RegistrationStartPageInputEnum.PARENT_NAME, 'Artur')
-            .typeGivenInput(RegistrationStartPageInputEnum.EMAIL, 'karolgiganci+fakedata80696@gmail.com')
-            .typeGivenInput(RegistrationStartPageInputEnum.PHONE_NUMBER, '123456651')
-            .typeGivenInput(RegistrationStartPageInputEnum.BIRTH_YEAR, '2005')
             .clickStatuteAgreedCheckbox()
             .clickAdvertisementAgreedCheckbox()
             .clickSubmitButton(true)
@@ -71,11 +68,8 @@ describe('course registration Test', () => {
 
     it('case - 5 Verify registration flow for online annual courses', () => {
         cy.log('fill in first step of registration')
+        fillStartData()
         RegistrationPages.StartFormPage
-            .typeGivenInput(RegistrationStartPageInputEnum.PARENT_NAME, 'Artur')
-            .typeGivenInput(RegistrationStartPageInputEnum.EMAIL, 'karolgiganci+fakedata80696@gmail.com')
-            .typeGivenInput(RegistrationStartPageInputEnum.PHONE_NUMBER, '123456651')
-            .typeGivenInput(RegistrationStartPageInputEnum.BIRTH_YEAR, '2005')
             .clickStatuteAgreedCheckbox()
             .clickAdvertisementAgreedCheckbox()
             .clickSubmitButton(true)
@@ -89,7 +83,7 @@ describe('course registration Test', () => {
         RegistrationPages.CourseTypeFormPage
             .clickOnProgrammingButton()
             .clickOnOnlineKind()
-            .selectCourseType(CourseKind.ANNUAL_PROGRAMMING_COURSES)
+            .selectCourseType(CourseKindEnum.ANNUAL_PROGRAMMING_COURSES)
 
         cy.log('select course details')
         RegistrationPages.CoursesPage
@@ -122,5 +116,13 @@ describe('course registration Test', () => {
     function assertCorrectFirstPage() {
         cy.url().should('include', '/zapisz-sie')
         cy.get('#registration-page').should('be.visible')
+    }
+
+    function fillStartData() {
+        RegistrationPages.StartFormPage
+            .typeGivenInput(RegistrationStartPageInputEnum.PARENT_NAME, 'Artur')
+            .typeGivenInput(RegistrationStartPageInputEnum.EMAIL, 'karolgiganci+fakedata80696@gmail.com')
+            .typeGivenInput(RegistrationStartPageInputEnum.PHONE_NUMBER, '123456651')
+            .typeGivenInput(RegistrationStartPageInputEnum.BIRTH_YEAR, '2005')
     }
 })

@@ -1,4 +1,4 @@
-export enum CourseKind {
+export enum CourseKindEnum {
     ONLINE = 'Online',
     STATIONARY = 'Stacjonarne',
     PROGRAMMING = 'Programowanie',

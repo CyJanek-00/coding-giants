@@ -1,6 +1,5 @@
 import {StartFormPageElement} from "./StartFormPageElement";
 import {RegistrationStartPageInputEnum} from "./enum/registrationStartPageInputEnum";
-import {StatuteAgreedCheckbox} from "./page-element/StatuteAgreedCheckbox";
 
 export class StartFormPage {
 

@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "course_registration_test": "npx cypress run --spec cypress/e2e/coding-giants/registration/course-registration-test.spec.ts --browser edge"
+  },
   "devDependencies": {
     "cypress": "14.0.0",
     "typescript": "5.1.6",
