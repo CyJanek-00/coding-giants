@@ -48,8 +48,9 @@ this allows filling in a given field more efficiently without having to write mu
 it minimizes the risk of introducing errors when the application evolves.
 - I used interception to better assert is submit button on first step work properly.
 
+
 6. Additional Efforts:
-I created a GitHub Action to run this test. It is available here:
+- I created a GitHub Action to run this test. It is available here:
 https://github.com/CyJanek-00/coding-giants/actions/workflows/registration-test.yml
 
 this workflow is triggered by the workflow_dispatch event, so just need to click the "Run workflow" button and select the main branch.
