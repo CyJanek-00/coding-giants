@@ -1,5 +1,5 @@
 import {StartFormPageElement} from "./StartFormPageElement";
-import {InputSelectorEnum} from "./enum/inputSelectorEnum";
+import {RegistrationStartPageInputEnum} from "./enum/registrationStartPageInputEnum";
 import {StatuteAgreedCheckbox} from "./page-element/StatuteAgreedCheckbox";
 
 export class StartFormPage {
@@ -22,14 +22,14 @@ export class StartFormPage {
         return this
     }
 
-    public verifyValidationForField(selector: InputSelectorEnum, expectedMessage: string): StartFormPage {
+    public verifyValidationForField(selector: RegistrationStartPageInputEnum, expectedMessage: string): StartFormPage {
         StartFormPageElement.InputComponent.getInputValidationElement(selector).invoke("prop", "textContent").then((textContent) => {
             expect(textContent).to.equal(expectedMessage);
         })
         return this;
     }
 
-    public typeGivenInput(selector: InputSelectorEnum, value: string): StartFormPage {
+    public typeGivenInput(selector: RegistrationStartPageInputEnum, value: string): StartFormPage {
         StartFormPageElement.InputComponent.getInputComponent(selector)
             .type(value)
         return this;
