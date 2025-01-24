@@ -17,7 +17,8 @@ Cypress.on('uncaught:exception', (err) => {
       Randomizing data would prevent this issue and provide better coverage, such as handling cases with double surnames.
 - I would assert on step four field that ware dynamically pasted in like address email why?
     - we do not assert that, where we got ensure that this data are accurate and corrected paste,
-    so on the form or in payload assert given data to have absolute certainty about that form
+    so on the form or in payload assert given data to have absolute certainty about that form.
+- Maybe I would try to find a way to cleanup after test like clean created data by api or DB.
 
 
 4. Test Description:
@@ -49,7 +50,7 @@ it minimizes the risk of introducing errors when the application evolves.
 - I used interception to better assert is submit button on first step work properly.
 
 
-6. Additional Efforts:
+6. Additional efforts:
 - I created a GitHub Action to run this test. It is available here:
 https://github.com/CyJanek-00/coding-giants/actions/workflows/registration-test.yml
 
