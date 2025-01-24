@@ -20,8 +20,7 @@ Run command in terminal:
 npm run run_registration_test
 ```
 
-## 4. GitHub Actions.
-You can also run the tests via Github actions Navigate to the following URL and manually trigger the workflow on the main branch:
-https://github.com/CyJanek-00/coding-giants/actions/workflows/registration-test.yml
+## 4. GitHub Actions
+You can also run the tests via Github Actions Navigate to actions module and manually trigger the workflow on the main branch
 
 
